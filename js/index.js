@@ -5,12 +5,15 @@ function authInterceptor(API, auth) {
     request: function(config) {
       var token = auth.getToken();
       if(config.url.indexOf(API) === 0 && token) {
+        console.log('headers' + config.headers);
         config.headers.Authorization = 'Bearer ' + token;
       }
       return config;
     },
 
     response: function(res) {
+      var headers = res.data.headers;
+      console.log(res);
       if(res.config.url.indexOf(API) === 0 && res.data.token) {
         auth.saveToken(res.data.token);
       }
@@ -81,8 +84,12 @@ function userService($http, API, auth) {
 // We won't touch anything in here
 function MainCtrl(user, auth) {
   var self = this;
+  self.isauthed = false;
+
+  self.response;
 
   function handleRequest(res) {
+    self.response = res;
     var token = res.data ? res.data.token : null;
     if(token) {
       console.log('JWT:', token);
@@ -106,7 +113,8 @@ function MainCtrl(user, auth) {
     auth.logout && auth.logout()
   }
   self.isAuthed = function() {
-    return auth.isAuthed ? auth.isAuthed() : false
+    self.isauthed = auth.isAuthed ? auth.isAuthed() : false;
+    //return auth.isAuthed ? auth.isAuthed() : false
   }
   self.myActivities = function() {
     user.myActivities()

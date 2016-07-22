@@ -11,38 +11,34 @@
   <body>
 
     <div ng-app="app" ng-controller="Main as main" class="container">
-  <h1>Autenticação em Angular com JWT - UFPR</h1>
+    <h1>Autenticação em Angular com JWT - UFPR</h1>
 
-  <br>
+    <br>
 
-  <input type="text" class="form-control" ng-model="main.username" placeholder="username"><br>
-  <input type="password" class="form-control" ng-model="main.password" placeholder="password">
+    <input type="text" class="form-control" ng-model="main.username" placeholder="username"><br>
+    <input type="password" class="form-control" ng-model="main.password" placeholder="password">
 
-  <br>
+    <br>
 
-  <p>Login: {{main.username}}</p>
-  <p>Password: {{main.password}}</p>
-  <p>Tá logado: {{main.isAuthed}}</p>
-  <p>Token: {{main.message}}</p>
+    <p>Login: {{main.username}}</p>
+    <p>Password: {{main.password}}</p>
+    <p>Tá logado: {{main.isauthed}}</p>
+    <p>Token: {{main.message}}</p>
+    <p>Response: {{main.response}}</p>
 
-  <button class="btn" ng-click="main.register()">Register</button>
-  <button class="btn" ng-click="main.login()">Login</button>
-  <button class="btn" ng-click="main.logout()" ng-show="main.isAuthed()">Logout</button>
+    <button class="btn" ng-click="main.register()">Register</button>
+    <button class="btn" ng-click="main.login()">Login</button>
+    <button class="btn" ng-click="main.logout()" ng-show="main.isAuthed()">Logout</button>
 
-  <button class="btn" ng-click="main.getQuote()">get quote</button>
-  <br><br>
-  {{main.message}}
-</div>
-
-
-
+    <button class="btn" ng-click="main.myActivities()">My Activities</button>
+    <br><br>
+    {{main.message}}
+  </div>
 
      <script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
      <script src="js/index.js"></script>
-
-
 
   </body>
 </html>
