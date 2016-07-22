@@ -88,6 +88,10 @@ function MainCtrl(user, auth) {
 
   self.response;
 
+  self.data;
+  self.status;
+  self.headers;
+
   function handleRequest(res) {
     self.response = res;
     var token = res.data ? res.data.token : null;
@@ -99,7 +103,14 @@ function MainCtrl(user, auth) {
 
   self.login = function() {
     user.login(self.username, self.password)
-      .then(handleRequest, handleRequest)
+      .success(function(data, status, headers){
+        self.headers = headers;
+        self.data = data;
+        self.status = status;
+      })
+      .error(function(data, status, headers){
+        console.log(err);
+      });
   }
   self.register = function() {
     user.register(self.username, self.password)
