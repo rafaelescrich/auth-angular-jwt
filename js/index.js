@@ -139,6 +139,10 @@ angular.module('app', [])
 .service('auth', authService)
 .constant('API', 'http://portalmecapi.c3sl.ufpr.br/v1')
 .config(function($httpProvider) {
+
+  $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = '*';
+  $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = "*";
+  $httpProvider.defaults.headers.common['Access-Control-Allow-Methods'] = "GET, POST, PUT, DELETE, OPTIONS";
   $httpProvider.interceptors.push('authInterceptor');
 })
 .controller('Main', MainCtrl)
